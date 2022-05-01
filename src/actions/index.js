@@ -4,12 +4,25 @@ export const emailHere = ({ email }) => ({
   email,
 });
 
-export const currenciesHere = (state) => ({
+export const currenciesHere = (currencies) => ({
   type: 'CURRENCIES_MUDANCA',
-  state,
+  currencies,
 });
 
 export const expensesHere = (state) => ({
   type: 'EXPENSES_MUDANCA',
   state,
 });
+
+export function currenciesAPI() {
+  return async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const API = await response.json();
+
+    const data = [Object.keys(API)];
+
+    const filtrando = data[0].filter((element) => element !== 'USDT');
+
+    return dispatch(currenciesHere(filtrando));
+  };
+}
