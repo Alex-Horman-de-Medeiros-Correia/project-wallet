@@ -11,7 +11,7 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { email } = this.props;
+    const { email, expenses } = this.props;
     return (
       <>
         <header>
@@ -24,9 +24,10 @@ class Wallet extends React.Component {
           <br />
           Despesa Total:
           <h3 data-testid="total-field">
-            {' '}
-            { '0'}
-            {' '}
+            { expenses.reduce((acc, currentValue) => acc
+            + (parseFloat(currentValue.value)
+            * parseFloat(currentValue.exchangeRates[currentValue.currency].ask)), 0) // essa parte eu obtive por meio de dica em grupo de estudo.
+              .toFixed(2) }
           </h3>
           <br />
           Cambio Utilizado:
@@ -45,10 +46,12 @@ class Wallet extends React.Component {
 Wallet.propTypes = {
   email: propTypes.string.isRequired,
   currenciesHere: propTypes.func.isRequired,
+  expenses: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({

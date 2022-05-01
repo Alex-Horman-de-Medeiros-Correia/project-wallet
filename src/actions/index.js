@@ -9,9 +9,9 @@ export const currenciesHere = (currencies) => ({
   currencies,
 });
 
-export const expensesHere = (state) => ({
+export const expensesHere = (expenses) => ({
   type: 'EXPENSES_MUDANCA',
-  state,
+  expenses,
 });
 
 export function currenciesAPI() {
