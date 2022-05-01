@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { currenciesAPI } from '../actions/index';
 import Form from '../components/Form';
+import Tabela from '../components/Tabela';
 
 class Wallet extends React.Component {
   componentDidMount() {
@@ -38,6 +39,10 @@ class Wallet extends React.Component {
           </h3>
         </header>
         <Form />
+
+        <br />
+        <br />
+        <Tabela />
       </>
     );
   }
