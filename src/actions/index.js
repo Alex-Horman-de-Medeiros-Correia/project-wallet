@@ -14,6 +14,11 @@ export const expensesHere = (expenses) => ({
   expenses,
 });
 
+export const expensesDelete = (expenses) => ({
+  type: 'DELETE_EXPENSES',
+  expenses,
+});
+
 export function currenciesAPI() {
   return async (dispatch) => {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
